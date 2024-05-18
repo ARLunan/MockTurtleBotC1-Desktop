@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Juan Miguel Jimeno
+# Copyright (c) 2021 Juan Miguel Jimeno and revised by AR Lunan 2024
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,41 +14,41 @@
 
 import os
 from launch import LaunchDescription
-from launch import LaunchContext
 from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
 from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.conditions import IfCondition
-from launch.substitutions import EnvironmentVariable
 from launch_ros.substitutions import FindPackageShare
 from launch_ros.actions import Node
+from launch.conditions import IfCondition, UnlessCondition
 
+
+MAP_NAME='playground' #change to the name of your own map here
 
 def generate_launch_description():
-    slam_launch_path = PathJoinSubstitution(
-        [FindPackageShare('slam_toolbox'), 'launch', 'online_async_launch.py']
-    )
+    depth_sensor = os.getenv('MTBC1_DEPTH_SENSOR', '')
 
-    slam_config_path = PathJoinSubstitution(
-        [FindPackageShare('mtbc1_navigation'), 'config', 'slam.yaml']
-    )
-
-    navigation_launch_path = PathJoinSubstitution(
-        [FindPackageShare('nav2_bringup'), 'launch', 'navigation_launch.py']
-    )
-
-    nav2_config_path = PathJoinSubstitution(
-        [FindPackageShare('mtbc1_navigation'), 'config', 'navigation.yaml']    
+    nav2_launch_path = PathJoinSubstitution(
+        [FindPackageShare('nav2_bringup'), 'launch', 'bringup_launch.py']
     )
 
     rviz_config_path = PathJoinSubstitution(
-        [FindPackageShare('mtbc1_navigation'), 'rviz', 'mtbc1_slam.rviz']
+        [FindPackageShare('mtbc1_navigation'), 'rviz', 'mtbc1_navigation.rviz']
     )
-    
-    lc = LaunchContext()
-    ros_distro = EnvironmentVariable('ROS_DISTRO')
-    slam_param_name = 'slam_params_file'
-    
+
+    default_map_path = PathJoinSubstitution(
+        [FindPackageShare('mtbc1_navigation'), 'maps', f'{MAP_NAME}.yaml']
+    )
+
+    nav2_config_path = PathJoinSubstitution(
+        [FindPackageShare('mtbc1_navigation'), 'config', 'navigation.yaml']
+    )
+
+    nav2_sim_config_path = PathJoinSubstitution(
+        [FindPackageShare('mtbc1_navigation'), 'config', 'navigation_sim.yaml']
+    )
+
+
     return LaunchDescription([
         DeclareLaunchArgument(
             name='sim', 
@@ -62,19 +62,29 @@ def generate_launch_description():
             description='Run rviz'
         ),
 
+       DeclareLaunchArgument(
+            name='map', 
+            default_value=default_map_path,
+            description='Navigation map path'
+        ),
+
         IncludeLaunchDescription(
-            PythonLaunchDescriptionSource(navigation_launch_path),
+            PythonLaunchDescriptionSource(nav2_launch_path),
+            condition=UnlessCondition(LaunchConfiguration("sim")),
             launch_arguments={
+                'map': LaunchConfiguration("map"),
                 'use_sim_time': LaunchConfiguration("sim"),
                 'params_file': nav2_config_path
             }.items()
         ),
 
         IncludeLaunchDescription(
-            PythonLaunchDescriptionSource(slam_launch_path),
+            PythonLaunchDescriptionSource(nav2_launch_path),
+            condition=IfCondition(LaunchConfiguration("sim")),
             launch_arguments={
+                'map': LaunchConfiguration("map"),
                 'use_sim_time': LaunchConfiguration("sim"),
-                slam_param_name: slam_config_path
+                'params_file': nav2_sim_config_path
             }.items()
         ),
 
