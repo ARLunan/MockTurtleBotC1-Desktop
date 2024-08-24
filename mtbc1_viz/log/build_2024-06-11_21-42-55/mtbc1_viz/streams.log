@@ -1,0 +1,29 @@
+[0.043s] Invoking command in '/home/ubuntutbc/mtbc1_ws/src/MockTurtleBotC1-Desktop/mtbc1_viz/build/mtbc1_viz': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake /home/ubuntutbc/mtbc1_ws/src/MockTurtleBotC1-Desktop/mtbc1_viz -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/ubuntutbc/mtbc1_ws/src/MockTurtleBotC1-Desktop/mtbc1_viz/install/mtbc1_viz
+[0.261s] -- The C compiler identification is GNU 11.4.0
+[0.411s] -- The CXX compiler identification is GNU 11.4.0
+[0.428s] -- Detecting C compiler ABI info
+[0.642s] -- Detecting C compiler ABI info - done
+[0.696s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.699s] -- Detecting C compile features
+[0.704s] -- Detecting C compile features - done
+[0.721s] -- Detecting CXX compiler ABI info
+[1.006s] -- Detecting CXX compiler ABI info - done
+[1.031s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[1.031s] -- Detecting CXX compile features
+[1.035s] -- Detecting CXX compile features - done
+[1.062s] -- Found ament_cmake: 1.3.9 (/opt/ros/humble/share/ament_cmake/cmake)
+[1.465s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[1.629s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[1.778s] -- Found ament_lint_auto: 0.12.11 (/opt/ros/humble/share/ament_lint_auto/cmake)
+[1.922s] [31mCMake Error at /opt/ros/humble/share/ament_cmake_core/cmake/core/ament_package_xml.cmake:53 (message):
+[1.922s]   ament_package_xml() package name 'mtbc1_viz' in '/package.xml' does not
+[1.922s]   match current PROJECT_NAME 'mtbc1_description'.  You must call project()
+[1.922s]   with the same package name before.
+[1.923s] Call Stack (most recent call first):
+[1.923s]   /opt/ros/humble/share/ament_lint_auto/cmake/ament_lint_auto_find_test_dependencies.cmake:31 (ament_package_xml)
+[1.923s]   CMakeLists.txt:28 (ament_lint_auto_find_test_dependencies)
+[1.923s] 
+[1.923s] -- Configuring incomplete, errors occurred!
+[1.923s] See also "/home/ubuntutbc/mtbc1_ws/src/MockTurtleBotC1-Desktop/mtbc1_viz/build/mtbc1_viz/CMakeFiles/CMakeOutput.log".
+[1.924s] [0m
+[1.934s] Invoked command in '/home/ubuntutbc/mtbc1_ws/src/MockTurtleBotC1-Desktop/mtbc1_viz/build/mtbc1_viz' returned '1': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake /home/ubuntutbc/mtbc1_ws/src/MockTurtleBotC1-Desktop/mtbc1_viz -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/ubuntutbc/mtbc1_ws/src/MockTurtleBotC1-Desktop/mtbc1_viz/install/mtbc1_viz
