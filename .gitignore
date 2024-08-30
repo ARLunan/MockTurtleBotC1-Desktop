@@ -57,3 +57,11 @@ CATKIN_IGNORE
 
 # gitignore
 /.gitignore
+
+# Git .DS_Store
+.DS_Store
+
+
+# vscode in lower directoty
+build/
+
