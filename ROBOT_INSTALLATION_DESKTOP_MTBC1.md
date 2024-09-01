@@ -1,11 +1,11 @@
 ## Manual installation of MockTurtleBotC1-Desktop packages on Desktop computer
-### Refer to separate Manual Installation of MockTurtleBotC1-Robot on Desktop computer 
+### Refer to separate Manual Installation of MockTurtleBotC1-Robot on Remote Desktop computer 
 
-### Note: This Procedure installs navigation packages on the Desktop Computer (Ubuntu) that does has a connected monitor for robot, SLAM & Nav Visualization functions .      
+Note: This Procedure installs navigation packages on the Remote Desktop Computer (Ubuntu) that does has a connected monitor for robot, SLAM & Nav Visualization functions .      
 
-### 1. Install Specfic Functional Packages from ROS 2 and MockTurtleBotC1-Desktop Github Repository
+1. Install Specfic Functional Packages from ROS 2 and MockTurtleBotC1-Desktop Github Repository
 
-#### 1.1 Source your ROS2 distro and workspace
+1.1 Source your ROS2 distro and workspace
 If it's your first time using ROS2 and haven't created your ROS2 workspace yet, you can check out 
 [ROS2 Creating a Workspace](https://docs.ros.org/en/galactic/Tutorials/Workspace/Creating-A-Workspace.html) tutorial. 
 The MockTurtleBotC1 code supports your_ros_distro = **humble** currently.
@@ -17,7 +17,7 @@ The MockTurtleBotC1 code supports your_ros_distro = **humble** currently.
 
 ### 2. Download MockTurtleBotC1-Desktop and dependencies:
 
-#### 2.1.2 Install MockTurtleBotcC1-Desktop package:
+2.1.2 Install MockTurtleBotcC1-Desktop package:
     
     cd mtbc1_ws
     git clone *https://github.com/ARLunan/MockTurtleBotC1-Desktop.git
@@ -27,4 +27,4 @@ The MockTurtleBotC1 code supports your_ros_distro = **humble** currently.
     
 
 ## Miscellaneous
-
+A reminder that , as described in this repository's README.me, configure the **.gitignore** file if using Git and VSCode applications to develop code.
